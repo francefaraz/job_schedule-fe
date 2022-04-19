@@ -61,9 +61,11 @@ function Schedule() {
       };  
      
       const getForm=async(e)=>{
+
         e.preventDefault()
         console.log("hello")
-        if(start!=='' && end!=='' && day!==''){
+        if(start.length!==0 && name!='' && end.length!==0  && day.length!==0 ){
+            console.log("entered in if block")
         var body={
         "name":name, 
         "days_avail":day,
@@ -77,10 +79,12 @@ function Schedule() {
         })
         .catch((err)=>{
         console.log(err,"err")
+        alert("NOT SUCCESSFULLY INSERTED")
+
         })
         }
         else{
-        alert("TEXTFIELD CANNOT BE EMPTY")
+        alert("FORM MUST NEED TO FILL!!")
         }
         }
       

@@ -10,22 +10,25 @@ var BACKEND_URL =
 
 const Addtext = () => {
     const [data,setData]=useState("")
+    const [email,setEmail]=useState("")
     // const[color1,setColor1] =useState("red")
     // const [err,setErr]=useState("")
     const add=(e)=>{
         e.preventDefault();
         if(data!=""){
         var body={
-            word1:data,
+            name:data,
+            email:email
         }
         // setColor1("green")
         // setErr("SuccessFully Inserted")
-        Axios.post(`${BACKEND_URL}/add`,body)
+        Axios.post(`${BACKEND_URL}/user/add`,body)
         .then((response)=>{
             console.log(response,"res")
         alert("SUCCESSFULLY INSERTED")
 
              setData("")
+             setEmail("")
         })
         .catch((err)=>{
             console.log(err,"err")
@@ -43,10 +46,11 @@ const Addtext = () => {
   return (
     <div>
         <div>
-            <h1> ADD A WORD TO DICTONARY</h1>
+            <h1> ADD A USER</h1>
           
                 {/* <input type="text" value={data} onChange={e=>setData(e.target.value)}/> */}
-                <TextField id="filled-basic" style={{marginBottom:"20px"}} label="ENTER A WORD" variant="filled" value={data} onChange={e=>setData(e.target.value)} />
+                <TextField id="filled-basic" style={{marginBottom:"20px"}} label="ENTER A NAME" variant="filled" value={data} onChange={e=>setData(e.target.value)} /><br/>
+                <TextField id="filled-basic" style={{marginBottom:"20px"}} label="ENTER A EMAIL" variant="filled" value={email} onChange={e=>setEmail(e.target.value)} />
               <br/>
               {/* <p style={{color: {color1}}}>{data ? "" : err}</p> */}
           

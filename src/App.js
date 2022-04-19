@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Addtext from './components/Addtext';
 import Displaydata from './components/Displaydata';
+import Searchworkers from './components/Searchworkers'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <header className="">
      <Addtext/>
      <Displaydata/>
+     <Searchworkers/>
       </header>
     </div>
   );

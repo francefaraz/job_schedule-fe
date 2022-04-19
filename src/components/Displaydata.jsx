@@ -18,6 +18,7 @@ export default function Displaydata() {
 
     const [id,setId]=useState("")
     const [data,setData]=useState("")
+    const [email,setEmail]=useState("")
     const [open,setOpen]=useState(false)
 
 
@@ -40,7 +41,7 @@ const [open1, setOpen1] = useState(false);
 
 
     const getData=async()=>{
-        Axios.get(`${BACKEND_URL}`)
+        Axios.get(`${BACKEND_URL}/user`)
         .then((res)=>{
             // console.log("res",res)
             setDictonary(res.data)
@@ -51,8 +52,9 @@ const [open1, setOpen1] = useState(false);
     }
 
 
-    const handleClickOpen = (id,word1) => {
-        setData(word1)
+    const handleClickOpen = (id,nm,eml) => {
+        setData(nm)
+        setEmail(eml)
         setId(id)
         setOpen(true);
       };
@@ -65,11 +67,13 @@ const [open1, setOpen1] = useState(false);
     const updateData = async()=>{
          console.log("entered in update method",id,data)
          const body={
-             "word1":data
+             "name":data,
+             "email":email
          }
-       await Axios.put(`${BACKEND_URL}/${id}`,body)
+       await Axios.put(`${BACKEND_URL}/user/${id}`,body)
         .then((response)=>{
             console.log(response,"response of update")
+            alert("successfully updated")
         })
         .catch((err)=>{
             console.log(err,"error of update ")
@@ -86,7 +90,7 @@ const [open1, setOpen1] = useState(false);
 
         setOpen1(false)
         // console.log(e)
-        Axios.delete(`${BACKEND_URL}/${id}`,)
+        Axios.delete(`${BACKEND_URL}/user/${id}`,)
         .then((response)=>{
             // console.log(response,"res")
             // updateData()
@@ -104,14 +108,15 @@ const [open1, setOpen1] = useState(false);
 
     <div className="">
         <div style={{marginBottom:"20px"}}>
-        <h1>DISPLAYING DICTIONARY</h1>
+        <h1>DISPLAYING ALL USERS</h1>
 
         </div>
     <br/>
     <table className="cont1" border="1">
         <thead>
             <tr>
-                <th>Word</th>
+                <th>Name</th>
+                <th>Email</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -119,9 +124,10 @@ const [open1, setOpen1] = useState(false);
             {
               dictonary?.length>0 ? dictonary.map((d)=>{
                     return <tr key={d._id}>
-                        <td>{d.word1}</td>
+                        <td>{d.name}</td>
+                        <td>{d.email}</td>
                         <td colSpan="2">
-                        <Button variant="contained" style={{backgroundColor:"orange"}} onClick={()=>handleClickOpen(d._id,d.word1)} startIcon={<EditIcon/>}>EDIT</Button> &nbsp;
+                        <Button variant="contained" style={{backgroundColor:"orange"}} onClick={()=>handleClickOpen(d._id,d.name,d.email)} startIcon={<EditIcon/>}>EDIT</Button> &nbsp;
                         <Button variant="contained" style={{backgroundColor:"red"}} startIcon={<DeleteIcon />} onClick={()=>handleClickOpen1(d._id)}>DELETE</Button>
 
                         </td>
@@ -131,17 +137,28 @@ const [open1, setOpen1] = useState(false);
             </tbody>
     </table>
     <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>UPDATE YOUR DICTIONARY WORD</DialogTitle> 
+        <DialogTitle>UPDATE YOUR DETAILS</DialogTitle> 
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Update Your Text"
+            label="Update Your Name"
             type="email"
             fullWidth
             value={data}
             onChange={e=>setData(e.target.value)}
+            variant="standard"
+          />
+               <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Update Your Email"
+            type="email"
+            fullWidth
+            value={email}
+            onChange={e=>setEmail(e.target.value)}
             variant="standard"
           />
         </DialogContent>

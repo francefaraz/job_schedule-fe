@@ -3,6 +3,7 @@ import './App.css';
 import Addtext from './components/Addtext';
 import Displaydata from './components/Displaydata';
 import Searchworkers from './components/Searchworkers'
+import Schedule from './components/Schedule';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 
@@ -29,6 +30,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Addtext/>}/>
           <Route exact path="/search" element={<Searchworkers/>}/>
+          <Route exact path="/worker/add" element={<Schedule/>}/>
+
           {/* <Route path="*" element={<NotFound/>}/> */}
         </Routes>
 

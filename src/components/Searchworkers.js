@@ -6,7 +6,8 @@ import Axios from 'axios'
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
+import {useNavigate} from 'react-router-dom'
+
 export default function Searchworkers() {
 
   var BACKEND_URL =
@@ -20,7 +21,7 @@ export default function Searchworkers() {
   const [data,setData]=useState("")
   const [open1, setOpen1] = useState(false);
   const [id,setId]=useState("")
-
+  const navigate=useNavigate()
   const handleClickOpen1 = (a1) => {
     setId(a1);
     setOpen1(true);
@@ -168,6 +169,9 @@ else{
         </DialogActions>
       </Dialog>
 </div>
+<br/>
+<Button variant="contained" style={{backgroundColor:"green"}}  onClick={()=>navigate('/')} > GO BACK</Button>
+
 </div>
 
   )

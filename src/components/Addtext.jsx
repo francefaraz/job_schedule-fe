@@ -49,6 +49,8 @@ const Addtext = () => {
     <div>
 <Button variant="contained" onClick={()=>navigate('/search')} style={{float: "right"}}> SEARCH A WORKER</Button>
 
+<Button variant="contained" onClick={()=>navigate('/worker/add')} style={{float: "left"}}> ADD A WORKER</Button>
+
         <div>
             <h1> ADD A USER</h1>
           

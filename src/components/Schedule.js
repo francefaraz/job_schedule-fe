@@ -32,9 +32,21 @@ function Schedule() {
       };
 
     const handleDay = (e) => {
-        setDay(
-        arr=>[...arr,e.target.value]
-        );
+        let pos=day.indexOf(e.target.value);
+        console.log(pos)
+        if(pos===-1) {
+            console.log("entered in if")
+            setDay(
+                arr=>[...arr,e.target.value]
+                );
+        }
+        else{
+            console.log("entered in else")
+            let temp=day.pop(pos)
+            console.log(temp)
+            setDay(day)
+        }
+        
         console.log("Day",day)
       };  
 
@@ -90,13 +102,13 @@ function Schedule() {
                  type="checkbox"
                  id={index}
                  value={Day}
-                 onClick={handleDay} />
+                 onChange={handleDay} />
                  <label htmlFor={`-${index}`}>{Day}</label> </div>
                      <div  className= "col" >Start Time <input type="time" value={start.index} onChange={handleStart} /></div>
                      <div className= "col" >End Time <input type="time" value={end.index} onInput={handleEnd}/></div>
                     </div>  </>
-         )
-     })}
+         )})
+     }
         <input type="submit" className="submitButton"  onClick={getForm}  />
         <Button variant="contained" style={{backgroundColor:"green",width:"100%"}}  onClick={()=>navigate('/')} > GO BACK</Button>
 

@@ -2,7 +2,8 @@ import  Axios  from 'axios'
 import React,{useState,useEffect} from 'react'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-
+import {useNavigate} from 'react-router-dom'
+import Displaydata from './Displaydata'
 var BACKEND_URL =
     process.env.REACT_APP_BACKEND_URL ||
     "http://localhost:5000/api";
@@ -13,6 +14,7 @@ const Addtext = () => {
     const [email,setEmail]=useState("")
     // const[color1,setColor1] =useState("red")
     // const [err,setErr]=useState("")
+    const navigate=useNavigate()
     const add=(e)=>{
         e.preventDefault();
         if(data!=""){
@@ -45,6 +47,8 @@ const Addtext = () => {
     },[data])
   return (
     <div>
+<Button variant="contained" onClick={()=>navigate('/search')} style={{float: "right"}}> SEARCH A WORKER</Button>
+
         <div>
             <h1> ADD A USER</h1>
           
@@ -60,6 +64,7 @@ const Addtext = () => {
 
           
         </div>
+        <Displaydata/>
     </div>
   )
 }

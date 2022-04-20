@@ -15,39 +15,29 @@ function Schedule() {
     const [setData] = useState("");
     const navigate=useNavigate()
 
-    // const submit = (e) => {
-    //   e.preventDefault()
-    //   const formDetails = {
-    //     name: name,
-    //     day: day,
-    //     start: start,
-    //     end: end
-    //   };
-    //   console.log(formDetails, 'details');
-    // };
      
     const handleName = (e) => {
         setName(e.target.value);
-        console.log("Name" ,name)
+        
       };
 
     const handleDay = (e) => {
         let pos=day.indexOf(e.target.value);
         console.log(pos)
         if(pos===-1) {
-            console.log("entered in if")
+            
             setDay(
                 arr=>[...arr,e.target.value]
                 );
         }
         else{
-            console.log("entered in else")
+            
             let temp=day.pop(pos)
             console.log(temp)
             setDay(day)
         }
         
-        console.log("Day",day)
+        
       };  
 
     const handleStart = (e) => {
@@ -88,9 +78,7 @@ function Schedule() {
         }
         }
       
-        // useEffect(() => {
-        //   getForm();
-        // });
+        
 
 
     return (

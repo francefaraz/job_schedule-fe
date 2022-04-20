@@ -15,7 +15,9 @@ function Schedule() {
     const [setData] = useState("");
     const navigate=useNavigate()
 
-     
+    var BACKEND_URL =
+    process.env.REACT_APP_BACKEND_URL ||
+    "http://localhost:5000/api";
     const handleName = (e) => {
         setName(e.target.value);
         
@@ -62,7 +64,7 @@ function Schedule() {
         "start_times":start,
         "end_times":end
         }
-        Axios.post(`https://jobsch-be.herokuapp.com/api/worker/add`,body)
+        Axios.post(`${BACKEND_URL}/worker/add`,body)
         .then((response)=>{
         console.log(response,"res")
         alert("SUCCESSFULLY INSERTED")
